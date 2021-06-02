@@ -1,0 +1,25 @@
+name: Build docker images and push them to the registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login
+        env:
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: echo "$DOCKER_HUB_PASSWORD" | docker login -u plotter --password-stdin
+      - name: Build image
+        run: docker build -t plotter/jwt-tool:latest
+                          -t "plotter/jwt-tool:v$(jq -r .version package.json)"
+                          --build-arg COMMIT=${GITHUB_SHA}
+                          .
+      - name: Push latest tag
+        run: docker push plotter/jwt-tool:latest
+      - name: Push versioned tag
+        run: docker push "plotter/jwt-tool:v$(jq -r .version package.json)"

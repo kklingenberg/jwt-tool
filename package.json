@@ -1,0 +1,27 @@
+{
+  "name": "jwt-tool",
+  "version": "8.5.1",
+  "description": "A CLI for auth0/node-jsonwebtoken",
+  "private": true,
+  "main": "jwt-tool.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kklingenberg/jwt-tool.git"
+  },
+  "keywords": [
+    "JWT"
+  ],
+  "author": "Kai Klingenberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kklingenberg/jwt-tool/issues"
+  },
+  "homepage": "https://github.com/kklingenberg/jwt-tool#readme",
+  "dependencies": {
+    "commander": "^7.2.0",
+    "jsonwebtoken": "8.5.1"
+  }
+}
